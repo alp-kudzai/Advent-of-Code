@@ -1,0 +1,17 @@
+
+create a global container for all paths
+Get the start and end point
+~create a list of visited
+def helper(visited,source,dest):
+    ~append the start to visited (no need to visit again)
+    ~create a queue for all node connected to start
+    ~pop the first item of the queue(outer_queue)
+    ~check if its the end node (final destination)
+        ~if its the end node, append to visited & return visited
+        ~else check what nodes connect to dest(list), remove all visited nodes, if any left, continue
+            ~dest becomes new_source
+            ~create a queue of all nodes connected new source
+            ~pop the first off, thats the new dest
+            ~return helper(new_source, new_dest,visited)
+        ~else if there is nothing else left on the list, 
+
