@@ -138,6 +138,8 @@ def do_folds():
             fold_y(n)
             #counter += 1
         #if counter == num:
+        #for PART1 uncomment below
+        #break
     dots_x = count_dots(x_coord)
     dots_y = count_dots(y_coord)
     if dots_x != dots_y:
@@ -148,12 +150,8 @@ def do_folds():
             #print(f'X\n{x_coord}')
             #print(f'\nY\n{y_coord}')
             
-
-
-
-
-
-
+#for PART1 uncomment below
+#do_folds()
 def draw(file):
     global y_coord
     global x_coord
@@ -174,6 +172,7 @@ def draw(file):
                 f.write(mark)
             f.write('\n')
     
+#for PART1 comment below    
 draw('results.txt')
 
 
