@@ -1,0 +1,7 @@
+Part 1: 40 (took 0.0 seconds)
+Part 1: 652 (took 11.8 seconds)
+Part 1: 652 (took 8.3 seconds)
+Part 1: 652 (took 6.8 seconds)
+Part 1: 40 (took 0.0 seconds)
+Part 2: 315 (took 0.5 seconds)
+Part 1: 652 (took 8.5 seconds)
