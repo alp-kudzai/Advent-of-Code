@@ -8,44 +8,47 @@ import (
 )
 
 func main() {
-	// Create a new reader to read from standard input
-	f, err := os.Open("sample.txt")
+	// Open the file for reading
+	file, err := os.Open("input.txt")
 	if err != nil {
 		panic(err)
 	}
-	reader := bufio.NewReader(f)
-	defer f.Close()
+	defer file.Close()
 
-	// Keep track of the sum of the priorities of the item types that appear in both compartments
+	// Create a scanner to read the file
+	scanner := bufio.NewScanner(file)
+
+	// Keep a running total of the sum of the intersection characters
 	var sum int
 
-	// Read each line from standard input
-	for {
-		line, err := reader.ReadString('\n')
-		if err != nil {
-			break
-		}
+	// Loop over each line in the file
+	for scanner.Scan() {
+		line := scanner.Text()
 
-		// Remove leading and trailing whitespace from the line
-		line = strings.TrimSpace(line)
+		// Split the line in half
+		halfLen := len(line) / 2
+		firstHalf := line[:halfLen]
+		secondHalf := line[halfLen:]
 
-		// Split the line into two compartments
-		compartments := strings.SplitN(line, "", len(line)/2)
-
-		// Check if any item type appears in both compartments
-		for _, c := range compartments[0] {
-			if strings.ContainsRune(compartments[1], c) {
-				// If an item type appears in both compartments, calculate its priority and add it to the sum
-				priority := int(c-'a') + 1
-				if c >= 'A' && c <= 'Z' {
-					priority += 26
+		// Find the intersection characters shared by both halves
+		// and add them to the sum
+		for _, c := range firstHalf {
+			if strings.ContainsRune(secondHalf, c) {
+				// Calculate the numeric value of the character
+				// according to the given key (a-z=1-26, A-Z=27-52)
+				var val int
+				if c >= 'a' && c <= 'z' {
+					val = int(c-'a') + 1
+				} else if c >= 'A' && c <= 'Z' {
+					val = int(c-'A') + 27
 				}
-				sum += priority
-				break
+
+				// Add the character's value to the sum
+				sum += val
 			}
 		}
 	}
 
-	// Print
-	fmt.Printf("\nTotal: %v", sum)
+	// Print the final sum
+	fmt.Println(sum)
 }
